@@ -7,6 +7,7 @@ import { SEO } from 'astro-seo';
 import type { Props as SEOProps } from 'astro-seo';
 import { ViewTransitions } from 'astro:transitions';
 import css from './Layout.css';
+import Kuboston from './fragments/Kuboston.astro';
 
 export interface Props extends HTMLAttributes<'main'> {
   /** @see https://github.com/jonasmerlin/astro-seo#supported-props */
@@ -35,6 +36,8 @@ seo.description ||= 'Kuboton AI';
 
   <body>
     <main id={id} class={className} {...props}>
+      <Kuboston transition:persist />
+
       <slot />
     </main>
   </body>
