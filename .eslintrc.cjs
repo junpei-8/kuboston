@@ -86,24 +86,6 @@ module.exports = {
             message:
               'Importing Static framework components in Dynamic framework components is not allowed. This could potentially lead to the execution of unnecessary JavaScript.',
           },
-          {
-            from: '**/styles/*',
-            target: '**/!(*.static).{jsx,tsx}',
-            message:
-              'Importing styles defined with "vanilla-extract" in Framework components is not allowed. This could lead to the definition of redundant objects and potential performance degradation.',
-          },
-          {
-            from: '**/*.css.{ts,cts,mts}',
-            target: '**/!(*.static).{jsx,tsx}',
-            message:
-              'Importing styles defined with "vanilla-extract" in Framework components is not allowed. This could lead to the definition of redundant objects and potential performance degradation.',
-          },
-          {
-            from: '**/*.module.{css,scss,sass,less,styl,stylus,pcss,sss}',
-            target: '**/!(*.static).{jsx,tsx}',
-            message:
-              'Importing styles defined with "css-modules" in Framework components is not allowed. This could lead to the definition of redundant objects and potential performance degradation.',
-          },
         ],
       },
     ],
