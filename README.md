@@ -1,7 +1,7 @@
-# Itnav HP Client
+# Kuboston
 
-- URL: https://itnav.co.jp
-- Github: https://github.com/itnav/itnav-hp-client
+- URL: ...
+- Github: https://github.com/junpei-8/kuboston
 
 <br>
 
@@ -16,10 +16,6 @@
 
 - [vanilla-extract](https://vanilla-extract.style/)
 - [scss](https://sass-lang.com)
-
-### トランジションライブラリ
-
-- [swup](https://swup.js.org)
 
 <br>
 
