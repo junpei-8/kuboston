@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path fill="#222" d="m32 0 32 32-32 32L0 32z" />
+  <path fill="#3e9f78" d="M51 32 32 13 13 32l19 19 19-19Z" />
+
+  <style>
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    :root {
+      animation: spin 32s linear infinite;
+    }
+  </style>
+</svg>

@@ -1,0 +1,15 @@
+@use '../core' as *;
+
+// japanese font
+@include noto-sans-jp-faces();
+:root,
+.noto-sans-jp-font-family {
+  font-family: $noto-sans-jp-family, sans-serif;
+}
+
+// mono font
+@include noto-sans-mono-faces();
+code,
+.noto-sans-mono-font-family {
+  font-family: $noto-sans-mono-family, monospace;
+}

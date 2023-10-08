@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": ["./astro.config.mts", "./vite.config.mts"],
+  "include": ["./src/**/*", "./src/**/*.astro", "./vite.config.*.ts"],
+  "lib": ["ESNext", "DOM", "DOM.Iterable"],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": [],
+    "paths": {
+      "+/*": ["./src/pages/*"],
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
+    },
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "importHelpers": false
+  }
+}

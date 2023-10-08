@@ -1,0 +1,55 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+
+  "files.associations": {
+    ".env.d.ts": "typescript"
+  },
+
+  "prettier.documentSelectors": ["**/*.svg", "**/*.astro"],
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "astro"
+  ],
+
+  "stylelint.validate": ["css", "scss", "sass", "svg", "astro"],
+
+  "material-icon-theme.folders.associations": {
+    "_": "base",
+    "states": "ci"
+  },
+
+  "cSpell.userWords": [],
+  "cSpell.words": [
+    "astro",
+    "astrojs",
+    "fontsource",
+    "itnav",
+    "kuboston",
+    "multipass",
+    "murecho",
+    "noto",
+    "pcss",
+    "purgecss",
+    "roboto",
+    "rushstack",
+    "styl",
+    "stylelint",
+    "stylelintrc",
+    "swup",
+    "tsdoc"
+  ]
+}

@@ -1,0 +1,38 @@
+---
+import '@/styles/global.css';
+import '@/styles/global.scss';
+
+import type { HTMLAttributes } from 'astro/types';
+import { SEO } from 'astro-seo';
+import type { Props as SEOProps } from 'astro-seo';
+import css from './Layout.css';
+
+export interface Props extends HTMLAttributes<'main'> {
+  /** @see https://github.com/jonasmerlin/astro-seo#supported-props */
+  seo?: SEOProps;
+}
+
+const { id: _id, class: _class, seo = {}, ...props } = Astro.props;
+
+const id = _id ? `${$env.APP_ID} ${_id}` : $env.APP_ID;
+const className = _class ? `${css.main} ${_class}` : css.main;
+
+seo.titleDefault ||= 'Kuboton';
+seo.titleTemplate ||= '%s | Kuboton';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <SEO {...seo} />
+  </head>
+
+  <body>
+    <main id={id} class={className} {...props}>
+      <slot />
+    </main>
+  </body>
+</html>

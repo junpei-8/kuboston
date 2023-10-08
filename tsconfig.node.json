@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": ["./.eslintrc.cjs", "./.stylelintrc.cjs", "./.prettierrc.cjs"],
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "types": ["node"],
+    "verbatimModuleSyntax": false,
+    "esModuleInterop": false,
+    "importHelpers": false
+  }
+}

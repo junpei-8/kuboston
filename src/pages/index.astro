@@ -1,0 +1,14 @@
+---
+import type { Props as SEOProps } from 'astro-seo';
+import Layout from '@/layouts/Layout.astro';
+import Title from './_/fragments/Title.astro';
+
+const seo: SEOProps = {
+  description:
+    'イトナブとは「IT」×「遊ぶ」×「学ぶ」×「営む」×「イノベーション」の造語からできており、未来を担う若者達に学ぶ環境と機会を作っております。',
+};
+---
+
+<Layout seo={seo}>
+  <Title />
+</Layout>
