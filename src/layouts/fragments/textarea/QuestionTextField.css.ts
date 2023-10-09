@@ -10,6 +10,7 @@ export default css.instantiate(
       gap: '16px',
       alignItems: 'center',
       width: '80%',
+      maxWidth: '900px',
       height: '80px',
       padding: '16px',
       margin: '0 auto',
@@ -40,25 +41,14 @@ export default css.instantiate(
       width: '2.4rem',
       height: '2.4rem',
       padding: '8px',
-      color: 'white',
+      color: 'rgb(142, 142, 142)',
       background: 'linear-gradient(to left, #4347FD, #AF51EF)',
       border: '#2c3036 solid 2px',
       borderRadius: '50%',
 
       ':hover': {
-        color: 'rgb(142, 142, 142)',
-        backgroundColor: '#2362b9',
-        border: '#010202 solid 2px',
-        borderRadius: '100px',
+        color: 'white',
       },
     });
-
-    // SubmitPromptButtonButtonHover = style({
-    //   border: 'white solid 2px',
-    // });
-
-    // SubmitPromptButtonButtonActive = style({
-
-    // });
   },
 );

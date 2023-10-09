@@ -15,12 +15,16 @@ export default css.instantiate(
     });
 
     container = style({
-      position: 'relative',
+      position: 'sticky',
+      top: 0,
+      right: 0,
+      left: 0,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       width: 184,
       height: 140,
+      margin: '0 auto',
       marginBottom: '16px',
       background:
         'conic-gradient(from -24deg at 50% 50%, #3245ff 0deg, #bc52ee 102deg, #4af2c8 150deg, #4af2c8 200deg, #3245ff 360deg)',

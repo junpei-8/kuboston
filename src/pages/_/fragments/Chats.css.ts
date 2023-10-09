@@ -5,11 +5,13 @@ export default css.instantiate(
     // チャット
     chat = style({
       display: 'grid',
+      gridTemplateRows: 'min-content',
       gridTemplateColumns: 'repeat(6,1fr)',
       gap: '1rem',
-      maxWidth: '80%',
-      height: 'calc(100vh - 120px)',
-      padding: '0 0 20px 0',
+      width: '100%',
+      maxWidth: 'calc(80% + 40px)',
+      height: 'calc(100vh - 120px - 72px)',
+      padding: '0 20px 20px 20px',
       margin: '0 auto',
       overflowY: 'scroll',
       listStyle: 'none',
@@ -18,6 +20,7 @@ export default css.instantiate(
     sources = style({
       position: 'relative',
       gridColumn: 'span 5 / -1',
+      height: 'fit-content',
       padding: '1rem 1.5rem',
       color: '#fff',
       background: 'linear-gradient(83.21deg,#3245ff 0%,#bc52ee 100%)',
@@ -44,9 +47,9 @@ export default css.instantiate(
       flexFlow: 'column',
       gridColumn: '1 / -1',
       gap: '0.33em',
+      height: 'fit-content',
       padding: '1rem 1.5rem',
       marginTop: 0,
-      // fontFamily: '"MD IO 0.5",system-ui,-apple-system,BlinkMacSystemFont',
       fontSize: '0.9rem',
       color: '#fffc',
 
