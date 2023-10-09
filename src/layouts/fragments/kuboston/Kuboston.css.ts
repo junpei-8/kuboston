@@ -14,7 +14,7 @@ export default css.instantiate(
       },
     });
 
-    container = style({
+    face = style({
       position: 'sticky',
       top: 0,
       right: 0,
@@ -48,7 +48,7 @@ export default css.instantiate(
       marginBottom: '8px',
     });
 
-    face = style({
+    faceImage = style({
       zIndex: 1,
       display: 'block',
       width: 168,
