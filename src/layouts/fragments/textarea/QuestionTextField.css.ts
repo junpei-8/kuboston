@@ -5,6 +5,7 @@ export default css.instantiate(
     container = style({
       position: 'sticky',
       bottom: 0,
+      zIndex: 10,
       boxSizing: 'border-box',
       display: 'flex',
       gap: '16px',

@@ -19,6 +19,7 @@ export default css.instantiate(
       top: 0,
       right: 0,
       left: 0,
+      zIndex: 10,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

@@ -10,7 +10,6 @@ export default css.instantiate(
       gap: '1rem',
       width: '100%',
       maxWidth: 'calc(80% + 40px)',
-      height: 'calc(100vh - 120px - 72px)',
       padding: '0 20px 20px 20px',
       margin: '0 auto',
       overflowY: 'scroll',

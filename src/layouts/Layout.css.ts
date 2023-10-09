@@ -8,7 +8,6 @@ export default css.instantiate(
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
       maxWidth: '900px',
       height: '100%',
       minHeight: ['100vh', '100svh'],
