@@ -4,14 +4,12 @@ import type QuestionTextFieldCss from './QuestionTextField.css';
 
 type Props = VoidProps<{
   css: typeof QuestionTextFieldCss;
-  onSubmit: (uuid: string) => void;
 }>;
 
 export default function QuestionTextField(props: Props) {
   function onSubmit(event: Event) {
     event.preventDefault();
     kubostonStore.question();
-    props.onSubmit?.(crypto.randomUUID());
   }
 
   function onInputTextarea(event: Event) {
