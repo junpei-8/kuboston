@@ -90,6 +90,9 @@ export const kubostonStore = {
           response: answer,
         },
       ]);
+
+      // 一番下までスクロールする
+      document.body.scrollIntoView({ behavior: 'smooth', block: 'end' });
     } finally {
       // ボイスをリピート再生するインターバルをクリアする
       clearInterval(clearRepeatPlayingVoiceKey);
