@@ -1,5 +1,5 @@
 import type { VoidProps } from 'solid-js';
-import { kubostonStore } from '@/stores/kuboston';
+// import { kubostonStore } from '@/stores/kuboston';
 import type KubostonCss from './Kuboston.css';
 import { kubostonStatusStore } from './kuboston-status-store';
 
@@ -9,7 +9,7 @@ export default function KubostonFace(props: Props) {
     <div
       classList={{
         [props.css.face]: true,
-        [props.css.smallFace]: kubostonStore.getHasQuestioned(),
+        // [props.css.smallFace]: kubostonStore.getHasQuestioned(),
       }}
     >
       <img

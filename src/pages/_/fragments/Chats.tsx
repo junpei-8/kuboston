@@ -4,20 +4,18 @@ import css from './Chats.css';
 
 function Chats() {
   return (
-    <div>
-      <ul class={css.chat}>
-        <For each={kubostonStore.getMessages()}>
-          {(message) =>
-            message.request ? (
-              <li class={css.sources}>{message.request.content}</li>
-            ) : (
-              <li class={css.message}>{message.response.text}</li>
-            )
-          }
-        </For>
-        <div hidden={!kubostonStore.getIsQuestioning()}>...</div>
-      </ul>
-    </div>
+    <ul class={css.chat}>
+      <For each={kubostonStore.getMessages()}>
+        {(message) =>
+          message.request ? (
+            <li class={css.sources}>{message.request.content}</li>
+          ) : (
+            <li class={css.message}>{message.response.text}</li>
+          )
+        }
+      </For>
+      <div hidden={!kubostonStore.getIsQuestioning()}>...</div>
+    </ul>
   );
 }
 

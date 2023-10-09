@@ -3,7 +3,9 @@ import { css, keyframes, style } from '@/styles';
 export default css.instantiate(
   class {
     container = style({
-      paddingTop: '24px',
+      position: 'sticky',
+      top: 24,
+      zIndex: 8,
     });
 
     floatAnimation = keyframes({
@@ -19,12 +21,6 @@ export default css.instantiate(
     });
 
     face = style({
-      position: 'sticky',
-      top: 0,
-      right: 0,
-      left: 0,
-      zIndex: 10,
-      boxSizing: 'border-box',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

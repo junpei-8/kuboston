@@ -2,6 +2,13 @@ import { css, style } from '@/styles';
 
 export default css.instantiate(
   class {
+    container = style({
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    });
+
     top = style({
       maxWidth: 400,
     });
@@ -17,7 +24,6 @@ export default css.instantiate(
       color: '#858b98',
     });
 
-    // チャット
     chat = style({
       display: 'grid',
       gridTemplateRows: 'min-content',
