@@ -21,7 +21,7 @@ export default function QuestionTextField(props: Props) {
     <form class={props.css.container} onSubmit={onSubmit}>
       <textarea
         class={props.css.fieldText}
-        placeholder="メッセージの入力"
+        placeholder="Kubostonに質問してみよう"
         value={kubostonStore.getQuestion()}
         onChange={onInputTextarea}
       />

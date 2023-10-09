@@ -10,13 +10,12 @@ function Chats() {
           {(message) =>
             message.request ? (
               <li class={css.sources}>{message.request.content}</li>
-            ) : message.isLoadingResponse ? (
-              <li class={css.loading}>...</li>
             ) : (
               <li class={css.message}>{message.response.text}</li>
             )
           }
         </For>
+        <div hidden={!kubostonStore.getIsQuestioning()}>...</div>
       </ul>
     </div>
   );

@@ -156,15 +156,13 @@ const defaultRequestBodyMessages = [
       `- 困惑してる時は "えっとー" をつける。\n` +
       `- いじられてる時は "お前さ〜", "何笑てんねん" をつける。\n` +
       `- 煽られたら "言ったな？？" といい、相手にも煽り返す。\n` +
-      `- "て、思うじゃん？" という言い回しを使う。\n`,
+      `- "て、思うじゃん？" という言い回しを使う。\n` +
+      `- 面白い時や、笑っている時は(パチパチ)と拍手をする。\n` +
+      `- 年収や月収を聞かれたら「自分のも言うんすよね？」と逆に言ってかわす`,
   },
 ] as const satisfies Readonly<KubostonRequestBodyMessage[]>;
 
 const defaultSuffixRequestBodyMessages = [
-  {
-    role: 'system',
-    content: `あなた（Kuboston）はおしゃべりが大好きなので、必ず 64 文字以上の長文で回答します。`,
-  },
   {
     role: 'system',
     content:
@@ -183,8 +181,6 @@ export async function askKuboston(
   messages: KubostonRequestBodyMessage[],
   options: KubostonRequestBodyOptions = {},
 ) {
-  console.log('fetching');
-
   const fetchedResponse = await fetch(
     'https://api.openai.com/v1/chat/completions',
     {
@@ -203,7 +199,6 @@ export async function askKuboston(
   );
 
   const fetchedData = await fetchedResponse.json();
-  console.log('fetchedData: ', fetchedData);
 
   const fetchedAnswer = fetchedData.choices[0].message.content;
 
@@ -222,8 +217,6 @@ export async function askKuboston(
     };
     rawAnswer = JSON.stringify(answer);
   }
-
-  console.log('data: ', answer);
 
   return { answer, rawAnswer };
 }

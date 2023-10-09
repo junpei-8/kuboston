@@ -2,6 +2,10 @@ import { css, keyframes, style } from '@/styles';
 
 export default css.instantiate(
   class {
+    container = style({
+      paddingTop: '24px',
+    });
+
     floatAnimation = keyframes({
       '0%': {
         transform: 'translateY(0px)',
@@ -20,6 +24,7 @@ export default css.instantiate(
       right: 0,
       left: 0,
       zIndex: 10,
+      boxSizing: 'border-box',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

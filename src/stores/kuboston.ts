@@ -8,24 +8,17 @@ import { kubostonStatusStore } from '@/layouts/fragments/kuboston/kuboston-statu
 import ThinkingVoiceSoundPath from '@/layouts/fragments/kuboston/sounds/thinking.mp3';
 import { Audio } from '@/utils/web-api-helper';
 
-export type KubostonStoreQuestionMessage = {
+export type KubostonStoreRequestMessage = {
   request: KubostonRequestBodyMessage;
   response: null;
-};
-export type KubostonStoreRequestingMessage = {
-  request: null;
-  response: null;
-  isLoadingResponse: true;
 };
 export type KubostonStoreRespondMessage = {
   request: null;
   response: KubostonResponseBody;
-  isLoadingResponse: false;
 };
 
 export type KubostonStoreMessage =
-  | KubostonStoreQuestionMessage
-  | KubostonStoreRequestingMessage
+  | KubostonStoreRequestMessage
   | KubostonStoreRespondMessage;
 
 const [getQuestion, setQuestion] = createSignal<string>('');
@@ -51,12 +44,6 @@ export const kubostonStore = {
   async question() {
     const question = getQuestion();
 
-    const responseMessage: KubostonStoreRequestingMessage = {
-      request: null,
-      response: null,
-      isLoadingResponse: true,
-    };
-
     // メッセージを追加する
     setMessages((messages) => [
       ...messages,
@@ -67,7 +54,6 @@ export const kubostonStore = {
         },
         response: null,
       },
-      responseMessage,
     ]);
 
     // リクエストを追加する
@@ -96,19 +82,14 @@ export const kubostonStore = {
       // Kuboston 回答を保存する
       requestMessages.push({ role: 'assistant', content: rawAnswer });
 
-      // メッセージを更新する
-      setMessages((messages) => {
-        const respondMessage = messages[
-          messages.length - 1
-        ] as KubostonStoreRespondMessage;
-
-        respondMessage.response = answer;
-        respondMessage.isLoadingResponse = false;
-
-        console.log(respondMessage);
-
-        return [...messages];
-      });
+      // メッセージを追加する
+      setMessages((messages) => [
+        ...messages,
+        {
+          request: null,
+          response: answer,
+        },
+      ]);
     } finally {
       // ボイスをリピート再生するインターバルをクリアする
       clearInterval(clearRepeatPlayingVoiceKey);

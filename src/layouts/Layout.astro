@@ -5,10 +5,8 @@ import '@/styles/global.scss';
 import type { HTMLAttributes } from 'astro/types';
 import { SEO } from 'astro-seo';
 import type { Props as SEOProps } from 'astro-seo';
-import SendIconSvg from '@/assets/SendIcon';
 import css from './Layout.css';
 import Kuboston from './fragments/kuboston/Kuboston.astro';
-import type { KubostonProps } from './fragments/kuboston/Kuboston.astro';
 import QuestionTextField from './fragments/textarea/QuestionTextField';
 import QuestionTextFieldCss from './fragments/textarea/QuestionTextField.css';
 
@@ -18,7 +16,6 @@ export interface Props {
   headProps?: HTMLAttributes<'head'>;
   bodyProps?: HTMLAttributes<'body'>;
   mainProps?: HTMLAttributes<'main'>;
-  kubostonProps?: KubostonProps;
 }
 
 const props = Astro.props;
@@ -48,7 +45,7 @@ const mainClass = mainProps.class ? `${css.main} ${mainProps.class}` : css.main;
     <slot name="body-top" />
 
     <main {...mainProps} id={mainId} class={mainClass}>
-      <Kuboston transition:persist />
+      <Kuboston />
 
       <slot />
     </main>

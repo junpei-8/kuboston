@@ -2,6 +2,21 @@ import { css, style } from '@/styles';
 
 export default css.instantiate(
   class {
+    top = style({
+      maxWidth: 400,
+    });
+
+    heading = style({
+      fontSize: 48,
+      textAlign: 'center',
+    });
+
+    description = style({
+      fontSize: 16,
+      fontWeight: 500,
+      color: '#858b98',
+    });
+
     // チャット
     chat = style({
       display: 'grid',
