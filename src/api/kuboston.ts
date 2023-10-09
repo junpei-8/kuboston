@@ -100,8 +100,7 @@ export type KubostonEmotion =
   | 'confusion'
   | 'fear'
   | 'happiness'
-  | 'joy'
-  | 'normal';
+  | 'joy';
 
 export interface KubostonResponseBody {
   text: string;
@@ -127,7 +126,8 @@ const defaultRequestBodyMessages = [
   {
     role: 'user',
     content:
-      `あなたは株式会社イトナブのCTOです。\n` +
+      `あなたは株式会社イトナブのCTOの久保翔也の人格をインプットされたAIです。\n` +
+      `名前は "Kuboston" です。\n` +
       `会社で社長の次に偉い人です。\n` +
       `あなたは岐阜出身で、宮城県に住んでいます。\n` +
       `ノリノリな時は、たまに岐阜の方言が出ます。\n` +
@@ -156,33 +156,26 @@ const defaultRequestBodyMessages = [
       `- 困惑してる時は "えっとー" をつける。\n` +
       `- いじられてる時は "お前さ〜", "何笑てんねん" をつける。\n` +
       `- 煽られたら "言ったな？？" といい、相手にも煽り返す。\n` +
-      `- "て、思うじゃん？" という言い回しを使う。`,
+      `- "て、思うじゃん？" という言い回しを使う。\n`,
+  },
+] as const satisfies Readonly<KubostonRequestBodyMessage[]>;
+
+const defaultSuffixRequestBodyMessages = [
+  {
+    role: 'system',
+    content: `あなた（Kuboston）はおしゃべりが大好きなので、必ず 64 文字以上の長文で回答します。`,
   },
   {
-    role: 'user',
-    content:
-      `以後の会話では、あなたは下記の6つの感情パラメーターを持つかのように、振る舞うものとします。\n` +
-      `各感情パラメーターは会話を通じて1個の感情のみ変動するものとします。\n` +
-      `現在の感情パラメーターの値を反映するように、あなたの返答のトーンや発言は変化します。\n` +
-      `このパラメーターは、あなたの返答によって変化します。\n` +
-      `\n` +
-      `チャットボットの現在の感情パラメーター\n` +
-      `joy: 0〜5\n` +
-      `anger: 0〜5\n` +
-      `sadness: 0〜5\n` +
-      `happiness: 0〜5\n` +
-      `confusion: 0〜5\n` +
-      `fear: 0〜5\n`,
-  },
-  {
-    role: 'user',
+    role: 'system',
     content:
       `Based on the following requirements, please convert user input from hiragana and english to json format and provide a response:\n` +
       `\n` +
       `{\n` +
       `  "text": "<Answer>",\n` +
-      `  "emotion": "<The highest emotion among 'anger,' 'confusion,' 'fear,' 'happiness,' 'joy,' and 'normal'>",\n` +
-      `}`,
+      `  "emotion": "<The highest emotion among 'anger', 'confusion', 'fear', 'happiness' and 'joy'>",\n` +
+      `}` +
+      `\n` +
+      `"Also, you (Kuboston) love chatting, so you will always answered with a sentence that is at least 64 characters long in Japanese.`,
   },
 ] as const satisfies Readonly<KubostonRequestBodyMessage[]>;
 
@@ -200,7 +193,11 @@ export async function askKuboston(
       body: JSON.stringify({
         ...defaultRequestBodyOptions,
         ...options,
-        messages: [...defaultRequestBodyMessages, ...messages],
+        messages: [
+          ...defaultRequestBodyMessages,
+          ...messages,
+          ...defaultSuffixRequestBodyMessages,
+        ],
       } satisfies KubostonRequestBody),
     },
   );
@@ -208,10 +205,25 @@ export async function askKuboston(
   const fetchedData = await fetchedResponse.json();
   console.log('fetchedData: ', fetchedData);
 
-  const rawData = fetchedData.choices[0].message.content;
+  const fetchedAnswer = fetchedData.choices[0].message.content;
 
-  const data = JSON.parse(rawData) as KubostonResponseBody;
-  console.log('data: ', data);
+  let rawAnswer: string;
+  let answer: KubostonResponseBody;
 
-  return { data, rawData };
+  try {
+    rawAnswer = fetchedAnswer;
+    answer = JSON.parse(rawAnswer);
+
+    // ↓ JSON で変換できない場合はテキストを元にレスポンスを作成する
+  } catch {
+    answer = {
+      text: fetchedAnswer,
+      emotion: 'happiness',
+    };
+    rawAnswer = JSON.stringify(answer);
+  }
+
+  console.log('data: ', answer);
+
+  return { answer, rawAnswer };
 }
