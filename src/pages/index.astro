@@ -1,17 +1,17 @@
 ---
 import type { Props as SEOProps } from 'astro-seo';
-import SendIcon from '@/assets/SendIcon';
 import Layout from '@/layouts/Layout.astro';
-import Chats from './_/fragments/Chats.jsx';
-import Input from './_/fragments/PromptInputContainer.jsx';
+import Chats from './_/fragments/Chats';
 
 const seo: SEOProps = {};
 ---
 
 <Layout seo={seo}>
-  <!-- <Title /> -->
+  <h1>Kuboston</h1>
   <Chats client:idle />
-  <Input>
+  <!-- <Title /> -->
+  <!-- <Chats client:idle /> -->
+  <!-- <Input>
     <SendIcon slot="submit-icon" />
-  </Input>
+  </Input> -->
 </Layout>

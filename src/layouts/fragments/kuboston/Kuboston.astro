@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import type { VoidProps } from 'solid-js';
+import css from './Kuboston.css';
+import KubostonFace from './KubostonFace';
+import KubostonFacesPrefetch from './KubostonFacesPrefetch';
+
+type Props = VoidProps<
+  HTMLAttributes<'div'> & {
+    small?: boolean;
+  }
+>;
+export type KubostonProps = Props;
+
+const props = Astro.props;
+
+const baseContianerClass = props.small
+  ? `${css.container} ${css.smallFace}`
+  : css.container;
+
+const containerClass = props.class
+  ? `${baseContianerClass} ${props.class}`
+  : baseContianerClass;
+---
+
+<div {...props} class={containerClass}>
+  <KubostonFace client:load />
+  <KubostonFacesPrefetch />
+</div>

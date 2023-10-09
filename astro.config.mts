@@ -69,7 +69,5 @@ export default defineConfig({
     compressor({ gzip: false }),
   ],
 
-  site: $env.URL,
-
   output: 'static',
 });

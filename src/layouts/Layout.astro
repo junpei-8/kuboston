@@ -6,39 +6,55 @@ import type { HTMLAttributes } from 'astro/types';
 import { SEO } from 'astro-seo';
 import type { Props as SEOProps } from 'astro-seo';
 import { ViewTransitions } from 'astro:transitions';
+import { navigate } from 'astro:transitions/client';
+import SendIconSvg from '@/assets/SendIcon';
 import css from './Layout.css';
-import Kuboston from './fragments/Kuboston.astro';
+import Kuboston from './fragments/kuboston/Kuboston.astro';
+import type { KubostonProps } from './fragments/kuboston/Kuboston.astro';
+import QuestionTextField from './fragments/textarea/QuestionTextField';
+import QuestionTextFieldCss from './fragments/textarea/QuestionTextField.css';
 
-export interface Props extends HTMLAttributes<'main'> {
+export interface Props {
   /** @see https://github.com/jonasmerlin/astro-seo#supported-props */
   seo?: SEOProps;
+  headProps?: HTMLAttributes<'head'>;
+  bodyProps?: HTMLAttributes<'body'>;
+  mainProps?: HTMLAttributes<'main'>;
+  kubostonProps?: KubostonProps;
 }
 
-const { id: _id, class: _class, seo = {}, ...props } = Astro.props;
+const props = Astro.props;
 
-const id = _id ? `${$env.APP_ID} ${_id}` : $env.APP_ID;
-const className = _class ? `${css.main} ${_class}` : css.main;
+const { seo = {}, mainProps = {} } = props;
 
 seo.titleDefault ||= 'Kuboton';
 seo.titleTemplate ||= '%s | Kuboton';
 seo.description ||= 'Kuboton AI';
+
+const mainId = mainProps.id ? `${$env.APP_ID} ${mainProps.id}` : $env.APP_ID;
+const mainClass = mainProps.class ? `${css.main} ${mainProps.class}` : css.main;
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
+  <head {...props.headProps}>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO {...seo} />
     <ViewTransitions />
+    <slot name="head" />
   </head>
 
-  <body>
-    <main id={id} class={className} {...props}>
+  <body {...props.bodyProps}>
+    <main {...mainProps} id={mainId} class={mainClass}>
       <Kuboston transition:persist />
 
       <slot />
     </main>
+
+    <QuestionTextField client:load css={QuestionTextFieldCss}>
+      <SendIconSvg slot="submit-icon" />
+    </QuestionTextField>
   </body>
 </html>

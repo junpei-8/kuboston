@@ -1,6 +1,7 @@
+import { fileURLToPath, URL } from 'node:url';
 import { vanillaExtractPlugin as vanillaExtract } from '@vanilla-extract/vite-plugin';
-import { defineConfig } from 'vite';
-import $env from './vite.config.env';
+import { defineConfig, loadEnv } from 'vite';
+import { getEnv } from './vite.config.env';
 
 /** @see https://ja.vitejs.dev/config */
 export default defineConfig({
@@ -16,5 +17,9 @@ export default defineConfig({
     assetsInlineLimit: 0,
   },
 
-  define: { $env },
+  define: {
+    $env: getEnv(
+      loadEnv('production', fileURLToPath(new URL('.', import.meta.url)), ''),
+    ),
+  },
 });
